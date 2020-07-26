@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 
 export default class LeaderBoard extends React.Component {
 
@@ -20,20 +20,14 @@ export default class LeaderBoard extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchLeaderBoard(grade);
+       // this.fetchLeaderBoard(grade);
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <Text>LeaderBoard</Text>
-                <FlatList
-                    data={}
-                    value={()=>{
-
-                    }}
-                    keyExtractor={}
-                />
+               
                 <StatusBar style="light" />
             </View>
         );
