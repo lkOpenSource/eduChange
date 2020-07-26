@@ -8,7 +8,7 @@ import Home from './src/screens/Home.js';
 import LeaderBoard from './src/screens/LeaderBoard.js'
 
 const Tab = createBottomTabNavigator();
-// app edited my mini
+// ! Change the Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyAT6SlQF2EH3YQx6rsA4xfl6vqFQTpYXZM",
   authDomain: "hfm-hcc.firebaseapp.com",
