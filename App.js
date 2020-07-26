@@ -10,14 +10,14 @@ import LeaderBoard from './src/screens/LeaderBoard.js'
 const Tab = createBottomTabNavigator();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAT6SlQF2EH3YQx6rsA4xfl6vqFQTpYXZM",
-  authDomain: "hfm-hcc.firebaseapp.com",
-  databaseURL: "https://hfm-hcc.firebaseio.com",
-  projectId: "hfm-hcc",
-  storageBucket: "hfm-hcc.appspot.com",
-  messagingSenderId: "842435382557",
-  appId: "1:842435382557:web:61a06c0eb51c766d87e5f4",
-  measurementId: "G-BZBRVNEBNB"
+  apiKey: "AIzaSyCcETA2j0jQwMy2pvGizaBm_m6o0VJvMnA",
+  authDomain: "educhange-2630e.firebaseapp.com",
+  databaseURL: "https://educhange-2630e.firebaseio.com",
+  projectId: "educhange-2630e",
+  storageBucket: "educhange-2630e.appspot.com",
+  messagingSenderId: "660519400438",
+  appId: "1:660519400438:web:b37b9d2e882e00d7984dd7",
+  measurementId: "G-KD1QDSCDL3"
 };
 
 firebase.initializeApp(firebaseConfig);
