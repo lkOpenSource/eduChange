@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './HomeScreen.js';
 import LeaderBoardScreen from './LeaderBoardScreen.js';
+import AboutScreen from './AboutScreen.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +24,7 @@ export default class Home extends React.Component {
                                 iconName = "list-alt";
                             }
                             else {
-                                iconName = "list";
+                                iconName = "info-circle";
                             }
                             return <Icon name={iconName} type="FontAwesome" style={{ color: "white" }} />
                         }
@@ -37,6 +38,7 @@ export default class Home extends React.Component {
                     }}>
                     <Tab.Screen name="Learn" component={HomeScreen} />
                     <Tab.Screen name="LeaderBoard" component={LeaderBoardScreen} />
+                    <Tab.Screen name="About us" component={AboutScreen} />
                 </Tab.Navigator>
         )
     }
