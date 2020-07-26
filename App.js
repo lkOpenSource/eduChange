@@ -25,34 +25,7 @@ firebase.initializeApp(firebaseConfig);
 export default class App extends React.Component {
   render() {
     return (
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ color, size }) => {
-              let iconName;
-              if (route.name === "Home") {
-                iconName = "home";
-              }
-              else if (route.name === "LeaderBoard") {
-                iconName = "list";
-              }
-              else {
-                iconName = "list";
-              }
-              return <Icon name={iconName} type="FontAwesome" style={{color:"white"}}/>
-            }
-          })}
-          tabBarOptions={{
-            activeTintColor: "#74B9FF",
-            style:{
-              backgroundColor:"#000000",
-              borderTopColor:"black"
-            }
-          }}>
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="LeaderBoard" component={LeaderBoard}/>
-        </Tab.Navigator>
-      </NavigationContainer>
+      <Text>Hello</Text>
     )
   }
 }
