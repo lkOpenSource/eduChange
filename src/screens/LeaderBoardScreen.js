@@ -13,7 +13,7 @@ export default class LeaderBoard extends React.Component {
     }
 
     fetchLeaderBoard = (grade) => {
-        firebase.database().ref(`leaderboard/${grade}`)
+        firebase.database().ref(`leaderboard/grade${grade}/users`)
             .on("value", (dataSnapShot) => {
 
             })
@@ -27,7 +27,7 @@ export default class LeaderBoard extends React.Component {
         return (
             <View style={styles.container}>
                 <Text>LeaderBoard</Text>
-               
+                
                 <StatusBar style="light" />
             </View>
         );

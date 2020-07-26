@@ -1,0 +1,79 @@
+{
+    "subjects": {
+        "grade6": {
+            "ICT": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "Science": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "Maths": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "English": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "quiz": {
+                "questions": {}
+            }
+        },
+        "grade7": {
+            "ICT": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "Science": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "Maths": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "English": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            }
+        },
+        "grade8": {
+            "ICT": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "Science": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "Maths": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "English": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            }
+        },
+        "grade9": {
+            "ICT": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "Science": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "Maths": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            },
+            "English": {
+                "youtubeLinks": [],
+                "pastPapers": []
+            }
+        }
+    }
+}

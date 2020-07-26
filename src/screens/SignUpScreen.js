@@ -19,15 +19,23 @@ export default class LoadingScreen extends React.Component {
     }
 
     signUp = () => {
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then((authenticate) => {
-                this.setState({ uid: authenticate.user.uid });
-                authenticate.user.updateProfile({ displayName: this.state.name })
-                    .then(() => {
-                        this.addUserToDatabase();
-                    })
-            })
-            .catch((error) => alert(error))
+        if (this.state.email !== ""
+            && this.state.grade !== ""
+            && this.state.name !== ""
+            && this.state.password !== ""
+            && this.state.school !== "") {
+            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+                .then((authenticate) => {
+                    this.setState({ uid: authenticate.user.uid });
+                    authenticate.user.updateProfile({ displayName: this.state.name })
+                        .then(() => {
+                            this.addUserToDatabase();
+                        })
+                })
+                .catch((error) => alert(error))
+        } else {
+            alert("Please fill the form");
+        }
     }
 
     addUserToDatabase = () => {
