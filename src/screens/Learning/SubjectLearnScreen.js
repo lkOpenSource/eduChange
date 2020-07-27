@@ -23,6 +23,7 @@ export default class SubjectLearnScreen extends React.Component {
                     this.setState({ contents: dataSnapShot.val() })
                 } else {
                     alert("Check your internet connection and restart the App");
+                    this.props.navigation.navigate("learn");
                 }
             })
             .catch((error) => console.log(error))
@@ -43,15 +44,20 @@ export default class SubjectLearnScreen extends React.Component {
                     <Text>Subject-{this.state.subject}</Text>
 
                     <Button onPress={() => {
-                        this.props.navigation.navigate("PlayVideo", { url: "https://www.youtube.com/watch?v=Iv4vhOS89hc", title: "Fun Video" })
+                        this.props.navigation.navigate("PlayVideo", { url: "https://www.youtube.com/watch?v=Iv4vhOS89hc"})
                     }}>
                         <Text>Play Video</Text>
                     </Button>
-                    
+
                     <Button onPress={() => {
                         this.props.navigation.navigate("Quiz", { grade: this.state.grade, subject: this.state.subject })
                     }}>
                         <Text>Enter Quiz</Text>
+                    </Button>
+                    <Button onPress={() => {
+                        this.props.navigation.navigate("PdfView", { url: "http://www.africau.edu/images/default/sample.pdf" })
+                    }}>
+                        <Text>View Pdf</Text>
                     </Button>
                     <StatusBar style="light" />
                 </ScrollView>

@@ -6,6 +6,7 @@ import LearnScreen from '../screens/LearnScreen.js';
 import SubjectLearnScreen from './Learning/SubjectLearnScreen.js';
 import PlayVideo from './Learning/PlayVideo.js';
 import Quiz from './Learning/Quiz.js';
+import PdfView from './Learning/PdfView.js';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ export default class HomeScreen extends React.Component {
                 <Stack.Screen name="SubjectLearn" component={SubjectLearnScreen} options={{ title:"Learn" }}/>
                 <Stack.Screen name="PlayVideo" component={PlayVideo} options={{ title:"Video Player" }}/>
                 <Stack.Screen name="Quiz" component={Quiz} options={{ title:"Quiz" }}/>
+                <Stack.Screen name="PdfView" component={PdfView} options={{ title:"View Document" }}/>
             </Stack.Navigator>
         )
     }

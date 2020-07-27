@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { WebView } from 'react-native-webview';
+import { StyleSheet, Text, View } from 'react-native';
 import Loading from '/home/jsathu/ReactNative/eduChange/src/components/Loading.js';
+import PDFReader from 'rn-pdf-reader-js';
 
-export default class PlayVideo extends React.Component {
+export default class PdfView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -20,12 +20,10 @@ export default class PlayVideo extends React.Component {
     render() {
         if (this.state.url !== "") {
             return (
-                <WebView
-                    source={{ uri: this.state.url }}
-                    startInLoadingState={true}
-                    allowsFullscreenVideo
-                    style={{ marginBottom: 0 }}
-                    scrollEnabled={false}
+                <PDFReader
+                    source={{
+                        uri: "http://www.africau.edu/images/default/sample.pdf"
+                    }}
                 />
             )
         } else {
@@ -39,8 +37,7 @@ export default class PlayVideo extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        paddingTop: 0
     },
 });
+

@@ -46,7 +46,13 @@ export default class LoadingScreen extends React.Component {
             school: this.state.school,
             uid: this.state.uid
         }).then(() => {
-            this.saveUid();
+            firebase.database().ref(`users/${this.state.uid}/quiz`).set({
+                ICT: { score: 0, status: false },
+                Science: { score: 0, status: false },
+                Maths: { score: 0, status: false },
+                English: { score: 0, status: false }
+            })
+                .then(() => { this.saveUid() })
         })
             .catch((error) => console.log(error));
     }

@@ -5,11 +5,12 @@
                 "youtubeLinks": [],
                 "pastPapers": [],
                 "quiz": {
-                    "questions": {
-                        "What is known as ram":["random","access"],
-                        "Who is the father of computer":["charlesbabbege","sibishan"]
-                    },
-                    "answers":["random","charlesbabbege"]
+                    "questions":["What is ict?","who is the father of computer"],
+                    "choiseOne":["theriyathu","sibishan"],
+                    "choiseTwo":["theriyum","charles"],
+                    "choiseThree":["dontknow","jr"],
+                    "choiseFour":["iknow","fucker"],
+                    "answers":["dontknow","sibishan"]
                 }
             },
             "Science": {
