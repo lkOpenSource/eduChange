@@ -3,7 +3,14 @@
         "grade6": {
             "ICT": {
                 "youtubeLinks": [],
-                "pastPapers": []
+                "pastPapers": [],
+                "quiz": {
+                    "questions": {
+                        "What is known as ram":["random","access"],
+                        "Who is the father of computer":["charlesbabbege","sibishan"]
+                    },
+                    "answers":["random","charlesbabbege"]
+                }
             },
             "Science": {
                 "youtubeLinks": [],
@@ -16,9 +23,6 @@
             "English": {
                 "youtubeLinks": [],
                 "pastPapers": []
-            },
-            "quiz": {
-                "questions": {}
             }
         },
         "grade7": {

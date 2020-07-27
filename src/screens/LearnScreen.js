@@ -5,7 +5,7 @@ import { Button } from 'native-base'
 import Loading from '../components/Loading.js';
 import * as firebase from 'firebase';
 
-export default class learnScreen extends React.Component {
+export default class LearnScreen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -40,7 +40,16 @@ export default class learnScreen extends React.Component {
                     <Text>EduChange Welcome to Home Screen</Text>
                     <Text>{this.state.data.name}</Text>
                     <Text>{this.state.data.grade}</Text>
-                    <Button onPress={() => { this.props.navigation.navigate("ICT") }}><Text>ICT</Text></Button>
+                    <Button onPress={() => {
+                        this.props.navigation.navigate("SubjectLearn", { subject: "ICT", grade: this.state.data.grade })
+                    }}>
+                        <Text>ICT</Text>
+                    </Button>
+                    <Button onPress={() => {
+                        this.props.navigation.navigate("SubjectLearn", { subject: "Science", grade: this.state.data.grade })
+                    }}>
+                        <Text>Science</Text>
+                    </Button>
                     <StatusBar style="light" />
                 </ScrollView>
             );
