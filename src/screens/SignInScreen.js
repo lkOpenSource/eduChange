@@ -34,6 +34,8 @@ export default class SignInScreen extends React.Component {
     signIn = () => {
         if (this.state.email !== ""
             && this.state.password !== "") {
+            this.state.email.trim();
+            this.state.password.trim();
             firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
                 .then((authenticate) => {
                     this.setState({ uid: authenticate.user.uid });

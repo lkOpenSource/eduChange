@@ -1,8 +1,8 @@
 import React from 'react';
-import { WebView } from 'react-native-webview';
 import Loading from '../Loading.js';
+import { WebView } from 'react-native-webview';
 
-export default class PlayVideo extends React.Component {
+export default class WebViewForSubject extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,8 +22,6 @@ export default class PlayVideo extends React.Component {
                 <WebView
                     source={{ uri: this.state.url }}
                     startInLoadingState={true}
-                    allowsFullscreenVideo
-                    style={{ marginBottom: 0 }}
                     scrollEnabled={false}
                 />
             )
@@ -34,3 +32,4 @@ export default class PlayVideo extends React.Component {
         }
     }
 }
+

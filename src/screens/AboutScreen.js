@@ -35,7 +35,9 @@ export default class AboutScreen extends React.Component {
                 </View>
             )
         } else {
-            <Loading />
+            return(
+                <Loading />
+            )
         }
     }
 }

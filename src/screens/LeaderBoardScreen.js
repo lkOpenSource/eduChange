@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TextInput } from 'react-native';
 import Loading from './Loading.js';
 import * as Font from 'expo-font';
 import * as firebase from 'firebase';
+
+var dataOfLeaders = []
 
 export default class LeaderBoard extends React.Component {
 
@@ -12,7 +14,8 @@ export default class LeaderBoard extends React.Component {
         this.state = {
             data: [],
             isReady: false,
-            isFontLoaded: false
+            isFontLoaded: false,
+            searchText: ""
         }
     }
 
@@ -42,6 +45,7 @@ export default class LeaderBoard extends React.Component {
                 result.push(temp);
             });
             result.sort(this.sortData);
+            dataOfLeaders = result;
             this.setState({ data: result, isReady: true })
             //   console.log(result)
         })
@@ -49,6 +53,25 @@ export default class LeaderBoard extends React.Component {
 
     sortData = (a, b) => {
         return b.totalScore - a.totalScore;
+    }
+
+    searchFilter = (text) => {
+        if (text.length === 0) {
+            this.setState({ data: dataOfLeaders, searchText: "" })
+        } else {
+            let searchText = text.trim();
+            const result = this.state.data.filter((dataObject) => {
+                let newData = dataObject.name.toUpperCase();
+                let newSearchData = searchText.toUpperCase();
+                let index = newData.indexOf(newSearchData);
+                if (index !== -1 && index < 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            this.setState({ data: result, searchText: text })
+        }
     }
 
     componentDidMount() {
@@ -61,12 +84,18 @@ export default class LeaderBoard extends React.Component {
             return (
                 <View style={styles.container}>
                     <Text>LeaderBoard</Text>
+                    <TextInput
+                        onChangeText={(searchText) => { this.searchFilter(searchText) }}
+                        value={this.state.searchText}
+                        placeholder="Search using name"
+                    />
                     <FlatList
                         data={this.state.data}
                         renderItem={({ item }) =>
                             (
                                 <View>
-                                    <Text>Name-{item.name},Grade-{item.grade},School-{item.school},Score-{item.totalScore}</Text>
+                                    <Text>Name-{item.name},Grade-{item.grade}</Text>
+                                    <Text>School-{item.school},Score-{item.totalScore}</Text>
                                 </View>
                             )
                         }
@@ -89,6 +118,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 50
     },
 });
 

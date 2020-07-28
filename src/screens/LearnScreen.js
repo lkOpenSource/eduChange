@@ -67,7 +67,9 @@ export default class LearnScreen extends React.Component {
                 </ScrollView>
             );
         } else {
-            <Loading />
+            return(
+                <Loading />
+            )
         }
     }
 }

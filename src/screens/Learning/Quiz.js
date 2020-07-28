@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { Button } from 'native-base'
 import Loading from '../Loading.js';
+import * as Font from 'expo-font';
 import ViewPager from '@react-native-community/viewpager';
 import * as firebase from 'firebase';
 
@@ -23,9 +24,20 @@ export default class Quiz extends React.Component {
             end: false,
             isValid: true,
             uid: "",
-            subject: ""
+            subject: "",
+            isFontLoaded: false
         }
     }
+
+    loadFont = async () => {
+        await Font.loadAsync({
+            robotoBold: require("../../fonts/roboto-bold.ttf"),
+            ralewayMedium: require("../../fonts/raleway-medium.ttf"),
+            nunitoRegular: require("../../fonts/nunito-regular.ttf")
+        })
+        this.setState({ isFontLoaded: true })
+    }
+
     // subjects/grade${grade}/${subject}/quiz/
     getContents = (grade, subject) => {
         if (grade !== "" && subject !== "") {
@@ -113,10 +125,11 @@ export default class Quiz extends React.Component {
         this.setState({ subject })
         this.getContents(grade, subject);
         this.isUserCanTakeQuiz(subject);
+        this.loadFont();
     }
 
     render() {
-        if (this.state.end !== true && this.state.isValid !== false) {
+        if (this.state.end !== true && this.state.isValid !== false && this.state.isFontLoaded) {
             return (
                 <View style={styles.container}>
                     <ViewPager style={{ flex: 1 }} initialPage={0}>
@@ -136,7 +149,7 @@ export default class Quiz extends React.Component {
                     <StatusBar style="light" />
                 </View>
             )
-        } else if (this.state.end === true) {
+        } else if (this.state.end === true && this.state.isFontLoaded) {
             return (
                 <View>
                     <Text>The quiz has ended</Text>
@@ -146,7 +159,7 @@ export default class Quiz extends React.Component {
                     <StatusBar style="light" />
                 </View>
             )
-        } else if (this.state.isValid === false) {
+        } else if (this.state.isValid === false && this.state.isFontLoaded) {
             return (
                 <View>
                     <Text>You already took the quiz . wait till next one</Text>

@@ -34,13 +34,15 @@ export default class LoadingScreen extends React.Component {
     componentDidMount() {
         this.loadFont();
     }
-    
+
     signUp = () => {
         if (this.state.email !== ""
             && this.state.grade !== ""
             && this.state.name !== ""
             && this.state.password !== ""
             && this.state.school !== "") {
+            this.state.email.trim();
+            this.state.password.trim();
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then((authenticate) => {
                     this.setState({ uid: authenticate.user.uid });
@@ -94,7 +96,7 @@ export default class LoadingScreen extends React.Component {
                         <Label><Text>Name</Text></Label>
                         <Input value={this.state.name} onChangeText={(name) => { this.setState({ name }) }} />
                     </Item>
-    
+
                     <Item rounded>
                         <Label><Text>Grade</Text></Label>
                         <Input value={this.state.grade} onChangeText={(grade) => { this.setState({ grade }) }} />
@@ -107,14 +109,14 @@ export default class LoadingScreen extends React.Component {
                         <Label><Text>Password</Text></Label>
                         <Input value={this.state.password} onChangeText={(password) => { this.setState({ password }) }} />
                     </Item>
-    
+
                     <Button onPress={() => { this.signUp() }}><Text>SignUp</Text></Button>
                     <StatusBar style="light" />
                 </ScrollView>
             )
         } else {
             return (
-                <Loading/>
+                <Loading />
             )
         }
     }

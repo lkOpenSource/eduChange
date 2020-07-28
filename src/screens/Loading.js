@@ -5,7 +5,7 @@ export default class Loading extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Loading...</Text>
+        <Text style={{fontWeight:"bold",fontSize:25}}>Loading....</Text>
         <ActivityIndicator size="large"  style={{marginBottom:20}}/>
       </View>
     )

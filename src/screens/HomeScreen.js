@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler';
+//import 'react-native-gesture-handler';
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -7,6 +7,7 @@ import SubjectLearnScreen from './Learning/SubjectLearnScreen.js';
 import PlayVideo from './Learning/PlayVideo.js';
 import Quiz from './Learning/Quiz.js';
 import PdfView from './Learning/PdfView.js';
+import WebViewForSubject from './Learning/WebViewForSubject.js';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ export default class HomeScreen extends React.Component {
                 <Stack.Screen name="PlayVideo" component={PlayVideo} options={{ title:"Video Player" }}/>
                 <Stack.Screen name="Quiz" component={Quiz} options={{ title:"Quiz" }}/>
                 <Stack.Screen name="PdfView" component={PdfView} options={{ title:"View Document" }}/>
+                <Stack.Screen name="WebViewForSubject" component={WebViewForSubject} options={{ title:"View Website" }}/>
             </Stack.Navigator>
         )
     }
