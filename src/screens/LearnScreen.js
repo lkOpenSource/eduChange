@@ -2,7 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, ScrollView, AsyncStorage } from 'react-native';
 import { Button } from 'native-base'
-import Loading from '../components/Loading.js';
+import Loading from './Loading.js';
+import * as Font from 'expo-font';
 import * as firebase from 'firebase';
 
 export default class LearnScreen extends React.Component {
@@ -10,8 +11,19 @@ export default class LearnScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {}
+            data: {},
+            isFontLoaded: false
         }
+    }
+
+
+    loadFont = async () => {
+        await Font.loadAsync({
+            robotoBold: require("../fonts/roboto-bold.ttf"),
+            ralewayMedium: require("../fonts/raleway-medium.ttf"),
+            nunitoRegular: require("../fonts/nunito-regular.ttf")
+        })
+        this.setState({ isFontLoaded: true })
     }
 
     getUID = async () => {
@@ -30,11 +42,12 @@ export default class LearnScreen extends React.Component {
     }
 
     componentDidMount() {
+        this.loadFont();
         this.getUID();
     }
 
     render() {
-        if (this.state.data !== {}) {
+        if (this.state.data !== {} && this.state.isFontLoaded) {
             return (
                 <ScrollView contentContainerStyle={styles.container}>
                     <Text>EduChange Welcome to Home Screen</Text>

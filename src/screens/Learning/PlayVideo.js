@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { WebView } from 'react-native-webview';
-import Loading from '/home/jsathu/ReactNative/eduChange/src/components/Loading.js';
+import Loading from '../Loading.js';
 
 export default class PlayVideo extends React.Component {
 

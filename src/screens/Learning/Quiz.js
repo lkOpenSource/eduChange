@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { Button } from 'native-base'
-import Loading from '/home/jsathu/ReactNative/eduChange/src/components/Loading.js';
+import Loading from '../Loading.js';
 import ViewPager from '@react-native-community/viewpager';
 import * as firebase from 'firebase';
 
@@ -35,7 +35,7 @@ export default class Quiz extends React.Component {
                 .once("value", (dataSnapShot) => {
                     if (dataSnapShot.val()) {
                         let data = dataSnapShot.val();
-                       // console.log(data)
+                        //console.log(data)
                         this.setState({
                             questions: data.questions,
                             answers: data.answers,
@@ -71,9 +71,20 @@ export default class Quiz extends React.Component {
     }
 
     updateUserScore = () => {
+        let prevScore = 0;
+        firebase.database().ref(`users/${this.state.uid}/quiz/totalScore`)
+            .once("value", (score) => {
+                prevScore = score.val();
+            })
+       // console.log(prevScore);
+
         firebase.database().ref(`users/${this.state.uid}/quiz/${this.state.subject}/`)
             .update({ score: totalScore * 10, status: "false" })
-            .then(() => { this.setState({ end: true }) })
+            .then(() => {
+                firebase.database().ref(`users/${this.state.uid}/quiz/`)
+                    .update({ totalScore: (totalScore * 10) + prevScore })
+                    .then(() => { this.setState({ end: true }) })
+            })
             .catch((error) => console.log(error))
     }
 
@@ -156,8 +167,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-       // alignItems: 'center',
-    // justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
 });
 

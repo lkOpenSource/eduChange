@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, ScrollView, AsyncStorage } from 'react-native';
 import { Input, Button, Item, Label } from 'native-base';
+import * as Font from 'expo-font';
+import Loading from './Loading.js';
 import * as firebase from 'firebase';
 
 export default class LoadingScreen extends React.Component {
@@ -14,10 +16,25 @@ export default class LoadingScreen extends React.Component {
             name: "",
             grade: "",
             school: "",
-            uid: ""
+            uid: "",
+            isFontLoaded: false
         }
     }
 
+
+    loadFont = async () => {
+        await Font.loadAsync({
+            robotoBold: require("../fonts/roboto-bold.ttf"),
+            ralewayMedium: require("../fonts/raleway-medium.ttf"),
+            nunitoRegular: require("../fonts/nunito-regular.ttf")
+        })
+        this.setState({ isFontLoaded: true })
+    }
+
+    componentDidMount() {
+        this.loadFont();
+    }
+    
     signUp = () => {
         if (this.state.email !== ""
             && this.state.grade !== ""
@@ -47,10 +64,11 @@ export default class LoadingScreen extends React.Component {
             uid: this.state.uid
         }).then(() => {
             firebase.database().ref(`users/${this.state.uid}/quiz`).set({
-                ICT: { score: 0, status: false },
-                Science: { score: 0, status: false },
-                Maths: { score: 0, status: false },
-                English: { score: 0, status: false }
+                ICT: { score: 0, status: "true" },
+                Science: { score: 0, status: "true" },
+                Maths: { score: 0, status: "true" },
+                English: { score: 0, status: "true" },
+                totalScore: 0
             })
                 .then(() => { this.saveUid() })
         })
@@ -64,35 +82,41 @@ export default class LoadingScreen extends React.Component {
     }
 
     render() {
-        return (
-            <ScrollView contentContainerStyle={styles.container}>
-                <Text>SignUp Screen</Text>
-                <Item rounded>
-                    <Label><Text>Email</Text></Label>
-                    <Input value={this.state.email} onChangeText={(email) => { this.setState({ email }) }} />
-                </Item>
-                <Item rounded>
-                    <Label><Text>Name</Text></Label>
-                    <Input value={this.state.name} onChangeText={(name) => { this.setState({ name }) }} />
-                </Item>
-
-                <Item rounded>
-                    <Label><Text>Grade</Text></Label>
-                    <Input value={this.state.grade} onChangeText={(grade) => { this.setState({ grade }) }} />
-                </Item>
-                <Item rounded>
-                    <Label><Text>School</Text></Label>
-                    <Input value={this.state.school} onChangeText={(school) => { this.setState({ school }) }} />
-                </Item>
-                <Item rounded>
-                    <Label><Text>Password</Text></Label>
-                    <Input value={this.state.password} onChangeText={(password) => { this.setState({ password }) }} />
-                </Item>
-
-                <Button onPress={() => { this.signUp() }}><Text>SignUp</Text></Button>
-                <StatusBar style="light" />
-            </ScrollView>
-        );
+        if (this.state.isFontLoaded) {
+            return (
+                <ScrollView contentContainerStyle={styles.container}>
+                    <Text>SignUp Screen</Text>
+                    <Item rounded>
+                        <Label><Text>Email</Text></Label>
+                        <Input value={this.state.email} onChangeText={(email) => { this.setState({ email }) }} />
+                    </Item>
+                    <Item rounded>
+                        <Label><Text>Name</Text></Label>
+                        <Input value={this.state.name} onChangeText={(name) => { this.setState({ name }) }} />
+                    </Item>
+    
+                    <Item rounded>
+                        <Label><Text>Grade</Text></Label>
+                        <Input value={this.state.grade} onChangeText={(grade) => { this.setState({ grade }) }} />
+                    </Item>
+                    <Item rounded>
+                        <Label><Text>School</Text></Label>
+                        <Input value={this.state.school} onChangeText={(school) => { this.setState({ school }) }} />
+                    </Item>
+                    <Item rounded>
+                        <Label><Text>Password</Text></Label>
+                        <Input value={this.state.password} onChangeText={(password) => { this.setState({ password }) }} />
+                    </Item>
+    
+                    <Button onPress={() => { this.signUp() }}><Text>SignUp</Text></Button>
+                    <StatusBar style="light" />
+                </ScrollView>
+            )
+        } else {
+            return (
+                <Loading/>
+            )
+        }
     }
 }
 

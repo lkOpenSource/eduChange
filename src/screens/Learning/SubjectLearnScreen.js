@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, ScrollView, AsyncStorage } from 'react-native';
 import { Button } from 'native-base';
-import Loading from '/home/jsathu/ReactNative/eduChange/src/components/Loading.js';
+import Loading from '../Loading.js';
 import * as firebase from 'firebase';
 
 export default class SubjectLearnScreen extends React.Component {
@@ -23,7 +23,7 @@ export default class SubjectLearnScreen extends React.Component {
                     this.setState({ contents: dataSnapShot.val() })
                 } else {
                     alert("Check your internet connection and restart the App");
-                    this.props.navigation.navigate("learn");
+                   // this.props.navigation.navigate("learn");
                 }
             })
             .catch((error) => console.log(error))
