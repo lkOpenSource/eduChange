@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { Button } from 'native-base'
 import Loading from '../Loading.js';
 import * as Font from 'expo-font';
-import ViewPager from '@react-native-community/viewpager';
 import * as firebase from 'firebase';
 
 var totalScore = 0;
@@ -25,7 +24,10 @@ export default class Quiz extends React.Component {
             isValid: true,
             uid: "",
             subject: "",
-            isFontLoaded: false
+            isFontLoaded: false,
+            isStarted: false,
+            resultText: "",
+            img: ""
         }
     }
 
@@ -38,12 +40,11 @@ export default class Quiz extends React.Component {
         this.setState({ isFontLoaded: true })
     }
 
-    // subjects/grade${grade}/${subject}/quiz/
     getContents = (grade, subject) => {
         if (grade !== "" && subject !== "") {
-            //     this.setState({ questionNum: 0 })
-            // totalScore = 0;
-            firebase.database().ref(`${subject}/quiz/`)
+            this.setState({ questionNum: 0 })
+            totalScore = 0;
+            firebase.database().ref(`subjects/grade${grade}/${subject}/quiz/`)
                 .once("value", (dataSnapShot) => {
                     if (dataSnapShot.val()) {
                         let data = dataSnapShot.val();
@@ -83,21 +84,67 @@ export default class Quiz extends React.Component {
     }
 
     updateUserScore = () => {
-        let prevScore = 0;
-        firebase.database().ref(`users/${this.state.uid}/quiz/totalScore`)
-            .once("value", (score) => {
-                prevScore = score.val();
-            })
-       // console.log(prevScore);
+        if (!this.state.end) {
+            let prevScore = 0;
+            firebase.database().ref(`users/${this.state.uid}/quiz/totalScore`)
+                .once("value", (score) => {
+                    prevScore = score.val();
+                })
 
-        firebase.database().ref(`users/${this.state.uid}/quiz/${this.state.subject}/`)
-            .update({ score: totalScore * 10, status: "false" })
-            .then(() => {
-                firebase.database().ref(`users/${this.state.uid}/quiz/`)
-                    .update({ totalScore: (totalScore * 10) + prevScore })
-                    .then(() => { this.setState({ end: true }) })
-            })
-            .catch((error) => console.log(error))
+            firebase.database().ref(`users/${this.state.uid}/quiz/${this.state.subject}/`)
+                .update({ score: totalScore * 10, status: "false" })
+                .then(() => {
+                    firebase.database().ref(`users/${this.state.uid}/quiz/`)
+                        .update({ totalScore: (totalScore * 10) + prevScore })
+                        .then(() => {
+                            this.result();
+                            this.setState({ end: true })
+                        })
+                })
+                .catch((error) => console.log(error))
+        }
+    }
+
+    result = () => {
+        let resultPercentage = (totalScore / this.state.questions.length) * 100;
+        switch (true) {
+            case (resultPercentage >= 75):
+                this.setState({
+                    resultText: "Amazing !!",
+                    imgUrl: ""
+                })
+                break;
+            case (resultPercentage >= 65):
+                this.setState({
+                    resultText: "Good !!",
+                    imgUrl: ""
+                })
+                break;
+            case (resultPercentage >= 55):
+                this.setState({
+                    resultText: "Not Bad..",
+                    imgUrl: ""
+                })
+                break;
+            case (resultPercentage >= 35):
+                this.setState({
+                    resultText: "Need to focus",
+                    imgUrl: ""
+                })
+                break;
+            default:
+                this.setState({
+                    resultText: "Poor !! Work hard !!",
+                    imgUrl: ""
+                })
+                break;
+        }
+    }
+
+    quizTimer = async () => {
+        setTimeout(() => {
+            this.updateUserScore();
+        }, 300000)
     }
 
     isUserCanTakeQuiz = async (subject) => {
@@ -129,37 +176,48 @@ export default class Quiz extends React.Component {
     }
 
     render() {
-        if (this.state.end !== true && this.state.isValid !== false && this.state.isFontLoaded) {
+        if (!this.state.end && this.state.isValid && this.state.isFontLoaded && !this.state.isStarted) {
             return (
                 <View style={styles.container}>
-                    <ViewPager style={{ flex: 1 }} initialPage={0}>
-                        <View key="1">
-                            <Text>Quiz Screen</Text>
-                            <Text>Subject-{this.state.subject}</Text>
-                            <Text>Swipe right to start the quiz</Text>
-                        </View>
-                        <View key="2">
-                            <Text>{this.state.questions[this.state.questionNum]}</Text>
-                            <Button onPress={() => { this.answerClicked(this.state.choiseOne[this.state.questionNum]) }}><Text>{this.state.choiseOne[this.state.questionNum]}</Text></Button>
-                            <Button onPress={() => { this.answerClicked(this.state.choiseTwo[this.state.questionNum]) }}><Text>{this.state.choiseTwo[this.state.questionNum]}</Text></Button>
-                            <Button onPress={() => { this.answerClicked(this.state.choiseThree[this.state.questionNum]) }}><Text>{this.state.choiseThree[this.state.questionNum]}</Text></Button>
-                            <Button onPress={() => { this.answerClicked(this.state.choiseFour[this.state.questionNum]) }}><Text>{this.state.choiseFour[this.state.questionNum]}</Text></Button>
-                        </View>
-                    </ViewPager>
+                    <View >
+                        <Text>Quiz Screen</Text>
+                        <Text>Subject-{this.state.subject}</Text>
+                        <Button onPress={() => {
+                            this.setState({ isStarted: true });
+                            this.quizTimer();
+                        }}>
+                            <Text>Start Quiz</Text>
+                        </Button>
+                    </View>
                     <StatusBar style="light" />
                 </View>
             )
-        } else if (this.state.end === true && this.state.isFontLoaded) {
+        } else if (!this.state.end && this.state.isStarted) {
+            return (
+                <View >
+                    <Text>{this.state.questions[this.state.questionNum]}</Text>
+                    <Button onPress={() => { this.answerClicked(this.state.choiseOne[this.state.questionNum]) }}><Text>{this.state.choiseOne[this.state.questionNum]}</Text></Button>
+                    <Button onPress={() => { this.answerClicked(this.state.choiseTwo[this.state.questionNum]) }}><Text>{this.state.choiseTwo[this.state.questionNum]}</Text></Button>
+                    <Button onPress={() => { this.answerClicked(this.state.choiseThree[this.state.questionNum]) }}><Text>{this.state.choiseThree[this.state.questionNum]}</Text></Button>
+                    <Button onPress={() => { this.answerClicked(this.state.choiseFour[this.state.questionNum]) }}><Text>{this.state.choiseFour[this.state.questionNum]}</Text></Button>
+                </View>
+            )
+        }
+        else if (this.state.end) {
             return (
                 <View>
                     <Text>The quiz has ended</Text>
-                    <Text>Total number of questions answered {this.state.questions.length}</Text>
+                    <Text>Total number of questions  {this.state.questions.length}</Text>
+                    <Text>Total number of questions attempted {this.state.questionNum + 1}</Text>
                     <Text>Correct questions - {totalScore}</Text>
+                    <Text>Wrong questions - {this.state.questions.length - totalScore}</Text>
+                    <Text>{this.state.resultText}</Text>
+                    <Image source={require(`../../images/${this.state.img}`)} style={{ width: 100, height: 100 }} />
                     <Button onPress={() => { this.props.navigation.navigate("learn") }}><Text>Back to home</Text></Button>
                     <StatusBar style="light" />
                 </View>
             )
-        } else if (this.state.isValid === false && this.state.isFontLoaded) {
+        } else if (!this.state.isValid && this.state.isFontLoaded && !this.state.end) {
             return (
                 <View>
                     <Text>You already took the quiz . wait till next one</Text>
