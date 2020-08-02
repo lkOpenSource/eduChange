@@ -21,7 +21,7 @@ export default class PdfView extends React.Component {
             return (
                 <PDFReader
                     source={{
-                        uri: "http://www.africau.edu/images/default/sample.pdf"
+                        uri: `${this.state.url}`
                     }}
                 />
             )

@@ -1,0 +1,114 @@
+{
+    "ICT": {
+        "quiz": {
+            "questions": [
+                "What is ict?",
+                "who is the father of computer"
+            ],
+            "choiseOne": [
+                "theriyathu",
+                "sibishan"
+            ],
+            "choiseTwo": [
+                "theriyum",
+                "charles"
+            ],
+            "choiseThree": [
+                "dontknow",
+                "jr"
+            ],
+            "choiseFour": [
+                "iknow",
+                "fucker"
+            ],
+            "answers": [
+                "dontknow",
+                "sibishan"
+            ]
+        }
+    },
+    "Science": {
+        "quiz": {
+            "questions": [
+                "What is science?",
+                "who is the father of science"
+            ],
+            "choiseOne": [
+                "magic",
+                "sibishan"
+            ],
+            "choiseTwo": [
+                "fun",
+                "sathu"
+            ],
+            "choiseThree": [
+                "dontknow",
+                "jr"
+            ],
+            "choiseFour": [
+                "iknow",
+                "fucker"
+            ],
+            "answers": [
+                "fun",
+                "jr"
+            ]
+        }
+    },
+    "Maths": {
+        "quiz": {
+            "questions": [
+                "What is science?",
+                "who is the father of science"
+            ],
+            "choiseOne": [
+                "magic",
+                "sibishan"
+            ],
+            "choiseTwo": [
+                "fun",
+                "sathu"
+            ],
+            "choiseThree": [
+                "dontknow",
+                "jr"
+            ],
+            "choiseFour": [
+                "iknow",
+                "fucker"
+            ],
+            "answers": [
+                "fun",
+                "jr"
+            ]
+        }
+    },
+    "English": {
+        "quiz": {
+            "questions": [
+                "What is science?",
+                "who is the father of science"
+            ],
+            "choiseOne": [
+                "magic",
+                "sibishan"
+            ],
+            "choiseTwo": [
+                "fun",
+                "sathu"
+            ],
+            "choiseThree": [
+                "dontknow",
+                "jr"
+            ],
+            "choiseFour": [
+                "iknow",
+                "fucker"
+            ],
+            "answers": [
+                "fun",
+                "jr"
+            ]
+        }
+    }
+}

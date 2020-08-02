@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
-import { Button } from 'native-base'
+import { StyleSheet, Text, View, AsyncStorage, SafeAreaView, Image } from 'react-native';
+import { Button } from 'native-base';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Loading from '../Loading.js';
 import * as Font from 'expo-font';
 import * as firebase from 'firebase';
 
 var totalScore = 0;
+var myTimer;
 
 export default class Quiz extends React.Component {
 
@@ -27,15 +29,15 @@ export default class Quiz extends React.Component {
             isFontLoaded: false,
             isStarted: false,
             resultText: "",
-            img: ""
+            //   img: ""
         }
     }
 
     loadFont = async () => {
         await Font.loadAsync({
-            robotoBold: require("../../fonts/roboto-bold.ttf"),
             ralewayMedium: require("../../fonts/raleway-medium.ttf"),
-            nunitoRegular: require("../../fonts/nunito-regular.ttf")
+            nunitoRegular: require("../../fonts/nunito-regular.ttf"),
+            monto: require("../../fonts/montserrat-bold.ttf")
         })
         this.setState({ isFontLoaded: true })
     }
@@ -44,11 +46,11 @@ export default class Quiz extends React.Component {
         if (grade !== "" && subject !== "") {
             this.setState({ questionNum: 0 })
             totalScore = 0;
+            clearTimeout(myTimer);
             firebase.database().ref(`subjects/grade${grade}/${subject}/quiz/`)
                 .once("value", (dataSnapShot) => {
                     if (dataSnapShot.val()) {
                         let data = dataSnapShot.val();
-                        //console.log(data)
                         this.setState({
                             questions: data.questions,
                             answers: data.answers,
@@ -90,7 +92,6 @@ export default class Quiz extends React.Component {
                 .once("value", (score) => {
                     prevScore = score.val();
                 })
-
             firebase.database().ref(`users/${this.state.uid}/quiz/${this.state.subject}/`)
                 .update({ score: totalScore * 10, status: "false" })
                 .then(() => {
@@ -111,38 +112,38 @@ export default class Quiz extends React.Component {
             case (resultPercentage >= 75):
                 this.setState({
                     resultText: "Amazing !!",
-                    imgUrl: ""
+                    //     imgUrl: ""
                 })
                 break;
             case (resultPercentage >= 65):
                 this.setState({
                     resultText: "Good !!",
-                    imgUrl: ""
+                    //    imgUrl: ""
                 })
                 break;
             case (resultPercentage >= 55):
                 this.setState({
                     resultText: "Not Bad..",
-                    imgUrl: ""
+                    //     imgUrl: ""
                 })
                 break;
             case (resultPercentage >= 35):
                 this.setState({
                     resultText: "Need to focus",
-                    imgUrl: ""
+                    //   imgUrl: ""
                 })
                 break;
             default:
                 this.setState({
                     resultText: "Poor !! Work hard !!",
-                    imgUrl: ""
+                    //     imgUrl: ""
                 })
                 break;
         }
     }
 
     quizTimer = async () => {
-        setTimeout(() => {
+        myTimer = setTimeout(() => {
             this.updateUserScore();
         }, 300000)
     }
@@ -178,52 +179,83 @@ export default class Quiz extends React.Component {
     render() {
         if (!this.state.end && this.state.isValid && this.state.isFontLoaded && !this.state.isStarted) {
             return (
-                <View style={styles.container}>
-                    <View >
-                        <Text>Quiz Screen</Text>
-                        <Text>Subject-{this.state.subject}</Text>
-                        <Button onPress={() => {
+                <SafeAreaView style={styles.container}>
+                    <View style={styles.mainView}>
+                        <Text style={styles.headingText}>Welcome to quiz</Text>
+                        <Text style={styles.headingText}>ICT</Text>
+                        <Image style={styles.image} source={require("../../images/quiz.png")} />
+                        <Text style={styles.introPara}>This is a one time quiz you can only participate once.
+                        Time linit - 15 minutes.
+                        Double check before clicking the answer,Answer can be clicked only once</Text>
+                        <Button style={styles.button} block onPress={() => {
                             this.setState({ isStarted: true });
                             this.quizTimer();
                         }}>
-                            <Text>Start Quiz</Text>
+                            <Text style={styles.buttonText}>Start Quiz</Text>
                         </Button>
                     </View>
                     <StatusBar style="light" />
-                </View>
+                </SafeAreaView>
             )
         } else if (!this.state.end && this.state.isStarted) {
             return (
-                <View >
-                    <Text>{this.state.questions[this.state.questionNum]}</Text>
-                    <Button onPress={() => { this.answerClicked(this.state.choiseOne[this.state.questionNum]) }}><Text>{this.state.choiseOne[this.state.questionNum]}</Text></Button>
-                    <Button onPress={() => { this.answerClicked(this.state.choiseTwo[this.state.questionNum]) }}><Text>{this.state.choiseTwo[this.state.questionNum]}</Text></Button>
-                    <Button onPress={() => { this.answerClicked(this.state.choiseThree[this.state.questionNum]) }}><Text>{this.state.choiseThree[this.state.questionNum]}</Text></Button>
-                    <Button onPress={() => { this.answerClicked(this.state.choiseFour[this.state.questionNum]) }}><Text>{this.state.choiseFour[this.state.questionNum]}</Text></Button>
-                </View>
+                <SafeAreaView style={styles.container}>
+                    <View style={styles.mainViewQ}>
+                        <Text style={styles.questionText}>{this.state.questions[this.state.questionNum]}</Text>
+                        <View style={{ flexDirection: "row" }}>
+                            <Button style={styles.answerButton} block onPress={() => {
+                                this.answerClicked(this.state.choiseOne[this.state.questionNum])
+                            }}>
+                                <Text style={styles.answerText}>{this.state.choiseOne[this.state.questionNum]}</Text></Button>
+                            <Button style={styles.answerButton} block onPress={() => {
+                                this.answerClicked(this.state.choiseTwo[this.state.questionNum])
+                            }}>
+                                <Text style={styles.answerText}>{this.state.choiseTwo[this.state.questionNum]}</Text></Button>
+                        </View>
+                        <View style={{ flexDirection: "row" }}>
+                            <Button style={styles.answerButton} block onPress={() => {
+                                this.answerClicked(this.state.choiseThree[this.state.questionNum])
+                            }}>
+                                <Text style={styles.answerText}>{this.state.choiseThree[this.state.questionNum]}</Text></Button>
+                            <Button style={styles.answerButton} block onPress={() => {
+                                this.answerClicked(this.state.choiseFour[this.state.questionNum])
+                            }}>
+                                <Text style={styles.answerText}>{this.state.choiseFour[this.state.questionNum]}</Text></Button>
+                        </View>
+                    </View>
+                    <StatusBar style="light" />
+                </SafeAreaView>
             )
         }
         else if (this.state.end) {
             return (
-                <View>
-                    <Text>The quiz has ended</Text>
-                    <Text>Total number of questions  {this.state.questions.length}</Text>
-                    <Text>Total number of questions attempted {this.state.questionNum + 1}</Text>
-                    <Text>Correct questions - {totalScore}</Text>
-                    <Text>Wrong questions - {this.state.questions.length - totalScore}</Text>
-                    <Text>{this.state.resultText}</Text>
-                    <Image source={require(`../../images/${this.state.img}`)} style={{ width: 100, height: 100 }} />
-                    <Button onPress={() => { this.props.navigation.navigate("learn") }}><Text>Back to home</Text></Button>
-                    <StatusBar style="light" />
-                </View>
+                <SafeAreaView style={styles.container}>
+                    <View style={styles.mainView}>
+                        <Text style={styles.headingText}>The quiz has ended</Text>
+                        <View style={{ marginTop: hp("3%") }}>
+                            <Text style={styles.introParaTwo}>Total number of questions  {this.state.questions.length}</Text>
+                            <Text style={styles.introParaTwo}>Total number of questions attempted {this.state.questionNum + 1}</Text>
+                            <Text style={styles.introParaTwo}>Correct questions - {totalScore}</Text>
+                            <Text style={styles.introParaTwo}>Wrong questions - {this.state.questions.length - totalScore}</Text>
+                            {/*       <Image style={styles.image} source={require(`../../images/${this.state.img}`)} /> */}
+                            <Text style={styles.introParaTwo}>{this.state.resultText}</Text>
+                            <Button block style={styles.button} onPress={() => { this.props.navigation.navigate("learn") }}><Text style={styles.buttonText}>Back to home</Text></Button>
+                        </View>
+                        <StatusBar style="light" />
+                    </View>
+                </SafeAreaView>
             )
         } else if (!this.state.isValid && this.state.isFontLoaded && !this.state.end) {
             return (
-                <View>
-                    <Text>You already took the quiz . wait till next one</Text>
-                    <Button onPress={() => { this.props.navigation.navigate("learn") }}><Text>Back to home</Text></Button>
-                    <StatusBar style="light" />
-                </View>
+                <SafeAreaView style={styles.container}>
+                    <View style={styles.mainViewF}>
+                        <Text style={styles.headingTextTwo}>You have already attempted the quiz</Text>
+                        <Image style={styles.image} source={require("../../images/sad.png")} />
+                        <Text style={styles.introPara}>Wait till the next one !!</Text>
+                        <Button block style={styles.button} onPress={() => { this.props.navigation.navigate("learn") }}><Text>Back to home</Text></Button>
+                        <StatusBar style="light" />
+                    </View>
+                </SafeAreaView>
             )
         }
         else {
@@ -237,9 +269,95 @@ export default class Quiz extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        backgroundColor: "#ffffff",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    mainView: {
+        alignContent: "center",
+        backgroundColor: "#DAE0E2",
+        borderRadius: hp("2%"),
+        width: wp("85%"),
+        height: hp("60%"),
+    },
+    headingText: {
+        fontFamily: "monto",
+        fontSize: hp("2.8%"),
+        color: "#000000",
+        marginTop: hp("1%"),
+        alignSelf: "center"
+    },
+    introPara: {
+        fontFamily: "nunitoRegular",
+        fontSize: hp("2.5%"),
+        color: "#000000",
+        margin: hp("2%"),
+        alignSelf: "center"
+    },
+    button: {
+        borderRadius: hp("1.5%"),
+        width: wp("35%"),
+        height: hp("5%"),
+        backgroundColor: "#00ff00",
+        alignSelf: "center"
+    },
+    buttonText: {
+        fontFamily: "nunitoRegular",
+        fontSize: hp("2%"),
+        color: "#000000",
+        margin: hp("2%")
+    },
+    image: {
+        borderRadius: hp("2.5%"),
+        width: wp("42%"),
+        height: hp("22%"),
+        alignSelf: "center"
+    },
+    mainViewQ: {
+        alignContent: "center",
+        backgroundColor: "#DAE0E2",
+        borderRadius: hp("2%"),
+        width: wp("85%"),
+        height: hp("50%"),
+    },
+    questionText: {
+        fontFamily: "ralewayMedium",
+        fontSize: hp("2.8%"),
+        color: "#000000",
+        margin: hp("2%")
+    },
+    answerText: {
+        fontFamily: "nunitoRegular",
+        fontSize: hp("2%"),
+        color: "#000000",
+        margin: hp("1%")
+    },
+    answerButton: {
+        borderRadius: hp("1.5%"),
+        width: wp("35%"),
+        height: hp("8%"),
+        backgroundColor: "#00ff00",
+        margin: hp("2%")
+    },
+    introParaTwo: {
+        fontFamily: "nunitoRegular",
+        fontSize: hp("2.4%"),
+        color: "#000000",
+        margin: hp("0.5%"),
+        alignSelf: "center"
+    },
+    headingTextTwo: {
+        fontFamily: "monto",
+        fontSize: hp("2%"),
+        color: "#000000",
+        marginTop: hp("1%"),
+        alignSelf: "center"
+    },
+    mainViewF: {
+        alignContent: "center",
+        backgroundColor: "#DAE0E2",
+        borderRadius: hp("2%"),
+        width: wp("85%"),
+        height: hp("40%"),
     },
 });
-

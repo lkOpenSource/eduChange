@@ -60,11 +60,11 @@ export default class SignInScreen extends React.Component {
                     <Text>SignIn Screen</Text>
                     <Item rounded>
                         <Label><Text>Email</Text></Label>
-                        <Input value={this.state.email} onChangeText={(email) => { this.setState({ email }) }} />
+                        <Input value={this.state.email} onChangeText={(email) => { this.setState({ email: email.trim() }) }} />
                     </Item>
                     <Item rounded>
                         <Label><Text>Password</Text></Label>
-                        <Input value={this.state.password} onChangeText={(password) => { this.setState({ password }) }} />
+                        <Input value={this.state.password} onChangeText={(password) => { this.setState({ password: password.trim() }) }} />
                     </Item>
                     <Button onPress={() => { this.signIn() }}><Text>SignIn</Text></Button>
                     <StatusBar style="light" />

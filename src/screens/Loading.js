@@ -1,12 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View ,ActivityIndicator} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View } from 'react-native';
+import { Spinner } from 'native-base';
 
 export default class Loading extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{fontWeight:"bold",fontSize:25}}>Loading....</Text>
-        <ActivityIndicator size="large"  style={{marginBottom:20}}/>
+        <Spinner color='white' />
+        <StatusBar style="light" />
       </View>
     )
   }
@@ -15,7 +17,7 @@ export default class Loading extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
   },

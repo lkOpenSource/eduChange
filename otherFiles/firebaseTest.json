@@ -1,0 +1,168 @@
+{
+    "subjects": {
+        "grade6": {
+            "ICT": {
+                "youtubeVideos": [
+                    {
+                        "title": "Singh in Usa",
+                        "content": "https://www.youtube.com/watch?v=Tny4_-QjNHg"
+                    },
+                    {
+                        "title": "Enaku theriyathu",
+                        "content": "https://www.youtube.com/watch?v=dn7jdyi_ibY"
+                    }
+                ],
+                "pdfFiles": [
+                    {
+                        "title": "First Pdf",
+                        "content": "http://www.africau.edu/images/default/sample.pdf"
+                    },
+                    {
+                        "title": "Second Pdf",
+                        "content": "http: //www.africau.edu/images/default/sample.pdf"
+                    }
+                ],
+                "websites": [
+                    {
+                        "title": "Learn anything",
+                        "content": "http://www.google.com"
+                    },
+                    {
+                        "title": "Learn something",
+                        "content": "http://www.yahoo.com"
+                    }
+                ],
+                "quiz": {
+                    "questions": [
+                        "Mail Merging is an important feature of ______",
+                        "When the system is switched on, the ______ is loaded into RAM.",
+                        "______ is an important function of an operating system which coordinates and controls various input and output devices attached to the system",
+                        "POST stands for ______",
+                        "In Booting, BIOS stands for ______",
+                        "Which is NOT a secondary storage device from below given answers"
+                    ],
+                    "choiseOne": [
+                        "MS Office",
+                        "BIOS",
+                        "Process Management",
+                        "Power On Self Test",
+                        "Boot Input Output Software",
+                        "Random Access Memory"
+                    ],
+                    "choiseTwo": [
+                        "MS Word",
+                        "Master Boot Record",
+                        "File Management",
+                        "Power On Self Transmission",
+                        "Basic In and Out System",
+                        "DVD"
+                    ],
+                    "choiseThree": [
+                        "MS PowerPoint",
+                        "Operating System",
+                        "House Keeping",
+                        "Power On Standard Test",
+                        "Boot In and Out System",
+                        "Pendrive"
+                    ],
+                    "choiseFour": [
+                        "MS Excel",
+                        "Application Software",
+                        "Device Management",
+                        "Plug On Standard Test",
+                        "Basic Input Output System",
+                        "Hard Disk"
+                    ],
+                    "answers": [
+                        "MS Word",
+                        "Operating System",
+                        "Device Management",
+                        "Power On Self Test",
+                        "Basic Input Output System",
+                        "Random Access Memory"
+                    ]
+                }
+            }
+        }
+    },
+    "users": {
+        "2ghQR6ahH2b5WRrqMT9DitAMjbC2": {
+            "email": "jsathurshan7@gmail.com",
+            "grade": "12",
+            "name": "Sathu",
+            "quiz": {
+                "English": {
+                    "score": 0,
+                    "status": "true"
+                },
+                "ICT": {
+                    "score": 0,
+                    "status": "true"
+                },
+                "Maths": {
+                    "score": 0,
+                    "status": "true"
+                },
+                "Science": {
+                    "score": 0,
+                    "status": "true"
+                },
+                "totalScore": 0
+            },
+            "school": "Hcc",
+            "uid": "2ghQR6ahH2b5WRrqMT9DitAMjbC2"
+        },
+        "3ghQR6ahH2b5WRrqMT9DitAMjbD9": {
+            "email": "rsibishan@gmail.com",
+            "grade": "6",
+            "name": "Sibi",
+            "quiz": {
+                "English": {
+                    "score": 10,
+                    "status": "true"
+                },
+                "ICT": {
+                    "score": 10,
+                    "status": "false"
+                },
+                "Maths": {
+                    "score": 10,
+                    "status": "true"
+                },
+                "Science": {
+                    "score": 10,
+                    "status": "false"
+                },
+                "totalScore": 40
+            },
+            "school": "Hcc",
+            "uid": "3ghQR6ahH2b5WRrqMT9DitAMjbD9"
+        },
+        "5ghQR6ahH2b5WRrqMT9DitAMjbE2": {
+            "email": "jathusutha@gmail.com",
+            "grade": "13",
+            "name": "Jathusha",
+            "quiz": {
+                "English": {
+                    "score": 20,
+                    "status": "true"
+                },
+                "ICT": {
+                    "score": 0,
+                    "status": "false"
+                },
+                "Maths": {
+                    "score": 30,
+                    "status": "true"
+                },
+                "Science": {
+                    "score": 10,
+                    "status": "false"
+                },
+                "totalScore": 60
+            },
+            "school": "RHLC",
+            "uid": "5ghQR6ahH2b5WRrqMT9DitAMjbE2"
+        }
+    }
+}

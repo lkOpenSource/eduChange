@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, ScrollView, AsyncStorage } from 'react-native';
-import { Button } from 'native-base'
+import { StyleSheet, Text, ScrollView, AsyncStorage, View, Image, SafeAreaView, TouchableOpacity, ImageBackground } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Loading from './Loading.js';
 import * as Font from 'expo-font';
 import * as firebase from 'firebase';
@@ -19,21 +19,19 @@ export default class LearnScreen extends React.Component {
 
     loadFont = async () => {
         await Font.loadAsync({
-            robotoBold: require("../fonts/roboto-bold.ttf"),
+            openSansBold: require("../fonts/opensans-bold.ttf"),
             ralewayMedium: require("../fonts/raleway-medium.ttf"),
-            nunitoRegular: require("../fonts/nunito-regular.ttf")
+            typeWriter: require("../fonts/type-writer.ttf"),
+            monto: require("../fonts/montserrat-bold.ttf")
         })
         this.setState({ isFontLoaded: true })
     }
 
     getUID = async () => {
         const userId = await AsyncStorage.getItem("uid");
-        //  console.log(userId)
         firebase.database().ref(`users/${userId}`).once("value", (dataSnapShot) => {
             if (dataSnapShot.val()) {
                 this.setState({ data: dataSnapShot.val() })
-
-                // console.log(dataSnapShot.val())
             } else {
                 alert("Check your internet connection and restart the app !!");
             }
@@ -49,25 +47,47 @@ export default class LearnScreen extends React.Component {
     render() {
         if (this.state.data !== {} && this.state.isFontLoaded) {
             return (
-                <ScrollView contentContainerStyle={styles.container}>
-                    <Text>EduChange Welcome to Home Screen</Text>
-                    <Text>{this.state.data.name}</Text>
-                    <Text>{this.state.data.grade}</Text>
-                    <Button onPress={() => {
-                        this.props.navigation.navigate("SubjectLearn", { subject: "ICT", grade: this.state.data.grade })
-                    }}>
-                        <Text>ICT</Text>
-                    </Button>
-                    <Button onPress={() => {
-                        this.props.navigation.navigate("SubjectLearn", { subject: "Science", grade: this.state.data.grade })
-                    }}>
-                        <Text>Science</Text>
-                    </Button>
-                    <StatusBar style="light" />
-                </ScrollView>
-            );
+                <SafeAreaView style={styles.container}>
+                    <ScrollView>
+                        <ImageBackground source={require("../images/bgHome.png")} style={{
+                            flex: 1,
+                            resizeMode: "cover"
+                        }}>
+                            <View style={{ marginTop: hp("1%") }}>
+                                <Text style={styles.mainText}>Hello</Text>
+                                <Text style={styles.mainTextTwo}>{this.state.data.name}</Text>
+                            </View>
+                            <Text style={styles.headingQuestion}>Are you ready to learn ?</Text>
+                            <View style={styles.subjects}>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("SubjectLearn", { subject: "Science", grade: this.state.data.grade }) }}>
+                                    <Image source={require("../images/science.png")} style={styles.image} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("SubjectLearn", { subject: "ICT", grade: this.state.data.grade }) }}>
+                                    <Image source={require("../images/ict.png")} style={styles.image} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("SubjectLearn", { subject: "Maths", grade: this.state.data.grade }) }}>
+                                    <Image source={require("../images/maths.png")} style={styles.image} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("SubjectLearn", { subject: "English", grade: this.state.data.grade }) }}>
+                                    <Image source={require("../images/english.png")} style={styles.image} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("SubjectLearn", { subject: "Health", grade: this.state.data.grade }) }}>
+                                    <Image source={require("../images/health.png")} style={styles.image} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("SubjectLearn", { subject: "Civics", grade: this.state.data.grade }) }}>
+                                    <Image source={require("../images/civics.png")} style={styles.image} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("SubjectLearn", { subject: "Geography", grade: this.state.data.grade }) }}>
+                                    <Image source={require("../images/geography.png")} style={styles.image} />
+                                </TouchableOpacity>
+                            </View>
+                            <StatusBar style="light" />
+                        </ImageBackground>
+                    </ScrollView>
+                </SafeAreaView>
+            )
         } else {
-            return(
+            return (
                 <Loading />
             )
         }
@@ -77,8 +97,35 @@ export default class LearnScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: '#DAE0E2'
     },
+    image: {
+        borderRadius: hp("2.5%"),
+        width: wp("90%"),
+        height: hp("15%"),
+        margin: hp("2%")
+    },
+    subjects: {
+
+    },
+    mainText: {
+        fontFamily: "ralewayMedium",
+        fontSize: hp("4%"),
+        color: "#000000",
+        marginTop: hp("6%"),
+        marginLeft: wp("4%")
+    },
+    mainTextTwo: {
+        fontFamily: "monto",
+        fontSize: hp("4%"),
+        color: "#000000",
+        marginLeft: wp("12%")
+    },
+    headingQuestion: {
+        fontFamily: "typeWriter",
+        fontSize: hp("2.8%"),
+        color: "#487EB0",
+        marginTop: hp("5%"),
+        alignSelf: "center"
+    }
 });

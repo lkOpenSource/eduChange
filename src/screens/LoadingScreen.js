@@ -1,16 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, AsyncStorage } from 'react-native';
+import { StyleSheet, View, AsyncStorage } from 'react-native';
+import { Spinner } from 'native-base';
 import * as firebase from 'firebase';
 
 export default class LoadingScreen extends React.Component {
-
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-
-    //     }
-    // }
 
     checkWhetherUserSignedInOrNot = () => {
         firebase.auth().onAuthStateChanged(async (authenticate) => {
@@ -32,8 +26,7 @@ export default class LoadingScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Loading...</Text>
-                <ActivityIndicator size="large" style={{ marginBottom: 20 }} />
+                <Spinner color='white' />
                 <StatusBar style="light" />
             </View>
         );
@@ -43,7 +36,7 @@ export default class LoadingScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#000000',
         alignItems: 'center',
         justifyContent: 'center',
     },

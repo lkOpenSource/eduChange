@@ -22,7 +22,6 @@ export default class WebViewForSubject extends React.Component {
                 <WebView
                     source={{ uri: this.state.url }}
                     startInLoadingState={true}
-                    scrollEnabled={false}
                 />
             )
         } else {
