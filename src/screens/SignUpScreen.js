@@ -135,7 +135,7 @@ export default class SignUpScreen extends React.Component {
                             </Button>
                             <View style={{ flexDirection: "row" }}>
                                 <Text style={styles.textLast}>I'm already a member.</Text>
-                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("SignIn") }}>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("Welcome") }}>
                                     <Text style={[styles.textLast, { color: "#0000ff" }]}> Sign In</Text>
                                 </TouchableOpacity>
                             </View>
