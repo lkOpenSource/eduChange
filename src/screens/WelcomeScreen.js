@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, ScrollView, AsyncStorage, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, ScrollView, AsyncStorage, SafeAreaView, View, TouchableOpacity } from 'react-native';
 import { Input, Button, Item, Label, Form } from 'native-base';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Loading from './Loading.js';
@@ -60,7 +60,6 @@ export default class WelcomeScreen extends React.Component {
             return (
                 <SafeAreaView style={styles.container}>
                     <ScrollView>
-                        {/*        <Image source={require("../images/")} style={styles.image}/> */}
                         <Text style={styles.heading}>Welcome</Text>
                         <Text style={styles.headingTwo}>Sign In</Text>
 
@@ -134,15 +133,14 @@ const styles = StyleSheet.create({
         borderRadius: hp("1.5%"),
         width: wp("30%"),
         height: hp("5%"),
-        backgroundColor: "#00ff00",
+        backgroundColor: "#74B9FF",
         margin: hp("2%"),
         alignSelf: "center"
     },
     buttonText: {
         fontFamily: "openSansBold",
-        fontSize: hp("2.4%"),
+        fontSize: hp("2.2%"),
         color: "#000000",
-        margin: hp("2%")
     },
     textLast: {
         fontFamily: "nunitoRegular",

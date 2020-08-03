@@ -167,7 +167,8 @@ const styles = StyleSheet.create({
     },
     image: {
         width: wp("100%"),
-        height: hp("30%")
+        height: hp("30%"),
+        resizeMode:"cover"
     },
     mainView: {
         borderRadius: hp("3%"),
@@ -199,7 +200,7 @@ const styles = StyleSheet.create({
         position: "absolute"
     },
     cardTextThree: {
-        fontSize: hp("6%"),
+        fontSize: hp("5%"),
         marginLeft: wp("70%"),
     },
     buttonView: {
@@ -213,14 +214,14 @@ const styles = StyleSheet.create({
         borderRadius: hp("1.5%"),
         width: wp("30%"),
         height: hp("5%"),
-        backgroundColor: "#00ff00",
+        backgroundColor: "#7CEC9F",
         margin: hp("2%")
     },
     buttonText: {
         fontFamily: "nunitoRegular",
-        fontSize: hp("2.1%"),
+        fontSize: hp("2%"),
         color: "#000000",
-        margin: hp("2%")
+    //    margin: hp("1%")
     },
     buttonTextOne: {
         fontFamily: "openSansBold",

@@ -25,14 +25,14 @@ export default class Home extends React.Component {
                             else {
                                 iconName = "info-circle";
                             }
-                            return <Icon name={iconName} type="FontAwesome" style={{ color: "white" }} />
+                            return <Icon name={iconName} type="FontAwesome" style={{ color: "#777E8B" }} />
                         }
                     })}
                     tabBarOptions={{
                         activeTintColor: "#74B9FF",
                         style: {
-                            backgroundColor: "#000000",
-                            borderTopColor: "black"
+                            backgroundColor: "#FFFFFF",
+                            borderTopColor: "#FFFFFF"
                         }
                     }}>
                     <Tab.Screen name="Learn" component={HomeScreen} />

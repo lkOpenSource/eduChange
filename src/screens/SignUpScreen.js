@@ -187,15 +187,15 @@ const styles = StyleSheet.create({
         borderRadius: hp("1.5%"),
         width: wp("30%"),
         height: hp("5%"),
-        backgroundColor: "#00ff00",
+        backgroundColor: "#74B9FF",
         margin: hp("2%"),
         alignSelf: "center"
     },
     buttonText: {
         fontFamily: "openSansBold",
-        fontSize: hp("2.4%"),
+        fontSize: hp("2.2%"),
         color: "#000000",
-        margin: hp("2%")
+      //  margin: hp("2%")
     },
     image: {
         borderRadius: hp("2.5%"),

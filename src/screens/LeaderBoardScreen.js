@@ -111,7 +111,7 @@ export default class LeaderBoardScreen extends React.Component {
                                 }}
                                 value={this.state.searchText}
                                 containerStyle={{ backgroundColor: '#FFFFFF', marginTop: hp("2%") }}
-                                inputContainerStyle={{ backgroundColor: '#8FD3F4' }}
+                                inputContainerStyle={{ backgroundColor: '#75DA8B' }}
                                 lightTheme={true}
                                 round={true}
                                 placeholderTextColor="#FFFFFF"
@@ -177,7 +177,8 @@ const styles = StyleSheet.create({
     image: {
         borderRadius: hp("2.5%"),
         width: wp("100%"),
-        height: hp("22%")
+        height: hp("22%"),
+        resizeMode:"cover"
     },
     card: {
         flexDirection: "row",

@@ -29,7 +29,7 @@ export default class Quiz extends React.Component {
             isFontLoaded: false,
             isStarted: false,
             resultText: "",
-            //   img: ""
+            imgUrl: ""
         }
     }
 
@@ -112,31 +112,31 @@ export default class Quiz extends React.Component {
             case (resultPercentage >= 75):
                 this.setState({
                     resultText: "Amazing !!",
-                    //     imgUrl: ""
+                    imgUrl: "https://firebasestorage.googleapis.com/v0/b/edu--change.appspot.com/o/five.png?alt=media&token=05f33dc7-9090-49e0-9c58-da5cf806a71d"
                 })
                 break;
             case (resultPercentage >= 65):
                 this.setState({
                     resultText: "Good !!",
-                    //    imgUrl: ""
+                    imgUrl: "https://firebasestorage.googleapis.com/v0/b/edu--change.appspot.com/o/four.png?alt=media&token=2a03dcea-678a-4487-b9a3-00eee052f6d5"
                 })
                 break;
             case (resultPercentage >= 55):
                 this.setState({
                     resultText: "Not Bad..",
-                    //     imgUrl: ""
+                    imgUrl: "https://firebasestorage.googleapis.com/v0/b/edu--change.appspot.com/o/three.png?alt=media&token=42bace8a-4ea1-4201-a6f3-d6f95c2d2c67"
                 })
                 break;
             case (resultPercentage >= 35):
                 this.setState({
                     resultText: "Need to focus",
-                    //   imgUrl: ""
+                    imgUrl: "https://firebasestorage.googleapis.com/v0/b/edu--change.appspot.com/o/two.png?alt=media&token=63811bc5-25ad-4811-859a-a951aff68b37"
                 })
                 break;
             default:
                 this.setState({
                     resultText: "Poor !! Work hard !!",
-                    //     imgUrl: ""
+                    imgUrl: "https://firebasestorage.googleapis.com/v0/b/edu--change.appspot.com/o/one.png?alt=media&token=7487c465-0d05-4030-8ceb-43eaa15ac76e"
                 })
                 break;
         }
@@ -237,7 +237,7 @@ export default class Quiz extends React.Component {
                             <Text style={styles.introParaTwo}>Total number of questions attempted {this.state.questionNum + 1}</Text>
                             <Text style={styles.introParaTwo}>Correct questions - {totalScore}</Text>
                             <Text style={styles.introParaTwo}>Wrong questions - {this.state.questions.length - totalScore}</Text>
-                            {/*       <Image style={styles.image} source={require(`../../images/${this.state.img}`)} /> */}
+                            <Image style={styles.imageTwo} source={{ uri: `${this.state.imgUrl}` }} />
                             <Text style={styles.introParaTwo}>{this.state.resultText}</Text>
                             <Button block style={styles.button} onPress={() => { this.props.navigation.navigate("learn") }}><Text style={styles.buttonText}>Back to home</Text></Button>
                         </View>
@@ -250,7 +250,7 @@ export default class Quiz extends React.Component {
                 <SafeAreaView style={styles.container}>
                     <View style={styles.mainViewF}>
                         <Text style={styles.headingTextTwo}>You have already attempted the quiz</Text>
-                        <Image style={styles.image} source={require("../../images/sad.png")} />
+                        <Image style={styles.imageLast} source={require("../../images/sad.png")} />
                         <Text style={styles.introPara}>Wait till the next one !!</Text>
                         <Button block style={styles.button} onPress={() => { this.props.navigation.navigate("learn") }}><Text>Back to home</Text></Button>
                         <StatusBar style="light" />
@@ -298,18 +298,32 @@ const styles = StyleSheet.create({
         borderRadius: hp("1.5%"),
         width: wp("35%"),
         height: hp("5%"),
-        backgroundColor: "#00ff00",
+        backgroundColor: "#74B9FF",
         alignSelf: "center"
     },
     buttonText: {
         fontFamily: "nunitoRegular",
         fontSize: hp("2%"),
         color: "#000000",
-        margin: hp("2%")
+        //   margin: hp("2%")
     },
     image: {
         borderRadius: hp("2.5%"),
-        width: wp("42%"),
+        width: wp("38%"),
+        height: hp("22%"),
+        alignSelf: "center",
+        resizeMode: "cover"
+    },
+    imageTwo: {
+      //  borderRadius: hp("2.5%"),
+        width: wp("50%"),
+        height: hp("10%"),
+        alignSelf: "center",
+       resizeMode: "cover"
+    },
+    imageLast: {
+        borderRadius: hp("2.5%"),
+        width: wp("40%"),
         height: hp("22%"),
         alignSelf: "center"
     },
@@ -330,13 +344,13 @@ const styles = StyleSheet.create({
         fontFamily: "nunitoRegular",
         fontSize: hp("2%"),
         color: "#000000",
-        margin: hp("1%")
+        //  margin: hp("1%")
     },
     answerButton: {
         borderRadius: hp("1.5%"),
         width: wp("35%"),
         height: hp("8%"),
-        backgroundColor: "#00ff00",
+        backgroundColor: "#0ABDE3",
         margin: hp("2%")
     },
     introParaTwo: {

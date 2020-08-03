@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import Loading from './Loading.js';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import * as Font from 'expo-font';
@@ -31,31 +31,33 @@ export default class AboutScreen extends React.Component {
         if (this.state.isFontLoaded) {
             return (
                 <SafeAreaView style={styles.container}>
-                    <View style={styles.top}>
-                        <Image source={require("../images/top.png")} />
-                    </View>
-                    <View style={styles.company}>
-                        <Text style={{ fontSize: hp("2.3%") }}>
-                            Powered by
+                    <ScrollView>
+                        <View style={styles.top}>
+                            <Image source={require("../images/top.png")} style={{resizeMode:"cover"}}/>
+                        </View>
+                        <View style={styles.company}>
+                            <Text style={{ fontSize: hp("2.3%") }}>
+                                Powered by
 		                </Text>
-                        <Text style={{ fontSize: hp("4%"), fontFamily: "openSansBold" }}>
-                            lk.OpenSource
+                            <Text style={{ fontSize: hp("4%"), fontFamily: "openSansBold" }}>
+                                lk.OpenSource
 		                </Text>
-                    </View>
-                    <View style={styles.quote}>
-                        <Text style={styles.quoteText}>'Dreams Don't Work Unless You Do'</Text>
-                    </View>
-                    <View style={styles.content}>
-                        <Text style={{ fontSize: hp("2.5%"), fontFamily: "nunitoRegular", color: "#4C4B4B" }}>
-                            eduChange is introduced to ease the studying experience and making
-                            learning more fun.
-                            Students can learn any subject area using our App
-                            Moreover,Students can ensure their knowledge by participating in monthly quizes
-                            This app is developed by lk.OpenSource Company
-                            Lead Developers - Sibishan and Sathurshan
+                        </View>
+                        <View style={styles.quote}>
+                            <Text style={styles.quoteText}>'Dreams Don't Work Unless You Do'</Text>
+                        </View>
+                        <View style={styles.content}>
+                            <Text style={{ fontSize: hp("2.5%"), fontFamily: "nunitoRegular", color: "#4C4B4B" }}>
+                                eduChange is introduced to ease the studying experience and making
+                                learning more fun.
+                                Students can learn any subject area using our App
+                                Moreover,Students can ensure their knowledge by participating in monthly quizes
+                                This app is developed by lk.OpenSource Company. 
+                                Lead Developers - Sibishan and Sathurshan
         		        </Text>
-                    </View>
-                    <StatusBar style="light" />
+                        </View>
+                        <StatusBar style="light" />
+                    </ScrollView>
                 </SafeAreaView>
             )
         } else {
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff"
     },
     top: {
-        alignItems: "center",
+        alignItems: "center"
     },
     company: {
         marginTop: hp("2%"),

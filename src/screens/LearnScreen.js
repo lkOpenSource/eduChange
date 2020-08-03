@@ -49,7 +49,7 @@ export default class LearnScreen extends React.Component {
             return (
                 <SafeAreaView style={styles.container}>
                     <ScrollView>
-                        <ImageBackground source={require("../images/bg.png")} style={{
+                        <ImageBackground source={require("../images/homeBG.png")} style={{
                             flex: 1,
                             resizeMode: "cover"
                         }}>
@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
         borderRadius: hp("2.5%"),
         width: wp("90%"),
         height: hp("15%"),
-        margin: hp("2%")
+        margin: hp("2%"),
+        resizeMode:"cover"
     },
     subjects: {
 
