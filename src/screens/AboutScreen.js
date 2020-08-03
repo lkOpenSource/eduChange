@@ -85,11 +85,11 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     quoteText: {
-        fontSize: hp("2.5%"),
+        fontSize: hp("2%"),
         fontFamily: "typeWriter",
         color: "#1287A5"
     },
     content: {
-        margin: hp("2%")
+     //   margin: hp("0.5%")
     }
 });

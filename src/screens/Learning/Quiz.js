@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
         fontFamily: "nunitoRegular",
         fontSize: hp("2.5%"),
         color: "#000000",
-        margin: hp("2%"),
+        margin: hp("0.5%"),
         alignSelf: "center"
     },
     button: {
