@@ -185,7 +185,7 @@ export default class Quiz extends React.Component {
                         <Text style={styles.headingText}>ICT</Text>
                         <Image style={styles.image} source={require("../../images/quiz.png")} />
                         <Text style={styles.introPara}>This is a one time quiz you can only participate once.
-                        Time linit - 15 minutes.
+                        Time limit - 15 minutes.
                         Double check before clicking the answer,Answer can be clicked only once</Text>
                         <Button style={styles.button} block onPress={() => {
                             this.setState({ isStarted: true });
@@ -292,7 +292,8 @@ const styles = StyleSheet.create({
         fontSize: hp("2.5%"),
         color: "#000000",
         margin: hp("0.5%"),
-        alignSelf: "center"
+        alignSelf: "center",
+        textAlign:"center"
     },
     button: {
         borderRadius: hp("1.5%"),
@@ -309,21 +310,21 @@ const styles = StyleSheet.create({
     },
     image: {
         borderRadius: hp("2.5%"),
-        width: wp("38%"),
-        height: hp("22%"),
+        width: wp("27%"),
+        height: hp("14%"),
         alignSelf: "center",
         resizeMode: "cover"
     },
     imageTwo: {
       //  borderRadius: hp("2.5%"),
-        width: wp("50%"),
+        width: wp("54%"),
         height: hp("10%"),
         alignSelf: "center",
        resizeMode: "cover"
     },
     imageLast: {
         borderRadius: hp("2.5%"),
-        width: wp("40%"),
+        width: wp("42%"),
         height: hp("22%"),
         alignSelf: "center"
     },
@@ -332,7 +333,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#DAE0E2",
         borderRadius: hp("2%"),
         width: wp("85%"),
-        height: hp("50%"),
+        height: hp("54%"),
     },
     questionText: {
         fontFamily: "ralewayMedium",
@@ -344,6 +345,7 @@ const styles = StyleSheet.create({
         fontFamily: "nunitoRegular",
         fontSize: hp("2%"),
         color: "#000000",
+        textAlign:"center"
         //  margin: hp("1%")
     },
     answerButton: {
@@ -358,7 +360,8 @@ const styles = StyleSheet.create({
         fontSize: hp("2.4%"),
         color: "#000000",
         margin: hp("0.5%"),
-        alignSelf: "center"
+        alignSelf: "center",
+        textAlign:"center"
     },
     headingTextTwo: {
         fontFamily: "monto",

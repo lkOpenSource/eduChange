@@ -95,7 +95,7 @@ export default class SignUpScreen extends React.Component {
                         <Form style={{ margin: hp("4%") }}>
                             <Item rounded inlineLabel style={styles.textBox}>
                                 <Label><Text style={styles.label}>  Email</Text></Label>
-                                <Input value={this.state.email} onChangeText={(email) => { this.setState({ email: email.trim() }) }} />
+                                <Input value={this.state.email} keyboardType="email-adcdress" onChangeText={(email) => { this.setState({ email: email.trim() }) }} />
                             </Item>
                             <Item rounded inlineLabel style={styles.textBox}>
                                 <Label><Text style={styles.label}>  Password</Text></Label>
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
         fontFamily: "openSansBold",
         fontSize: hp("2.2%"),
         color: "#000000",
-      //  margin: hp("2%")
+        //  margin: hp("2%")
     },
     image: {
         borderRadius: hp("2.5%"),
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
         marginBottom: hp("2%")
     },
     gradeImg: {
-        borderRadius: hp("2%"),
+      //  borderRadius: hp("2%"),
         width: wp("30%"),
         height: hp("15%"),
         margin: hp("2%"),

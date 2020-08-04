@@ -96,54 +96,53 @@ export default class LeaderBoardScreen extends React.Component {
         if (this.state.isReady && this.state.isFontLoaded) {
             return (
                 <SafeAreaView style={styles.container}>
-                    <ScrollView>
-                        <View style={styles.titleContainer}>
-                            <Image style={styles.image} source={require("../images/bg.png")} />
-                            <Text style={styles.title}>Leader Board</Text>
-                            <Text style={styles.titleTwo}>Your Position :- {this.state.position}</Text>
-                        </View>
-                        <View>
-                            <SearchBar
-                                placeholder="Search by Name"
-                                onChangeText={(searchText) => {
-                                    this.setState({ searchText })
-                                    this.searchFilter(searchText)
-                                }}
-                                value={this.state.searchText}
-                                containerStyle={{ backgroundColor: '#FFFFFF', marginTop: hp("2%") }}
-                                inputContainerStyle={{ backgroundColor: '#75DA8B' }}
-                                lightTheme={true}
-                                round={true}
-                                placeholderTextColor="#FFFFFF"
-                            />
-                        </View>
-                        <View style={{ marginTop: hp("2%") }}>
-                            <FlatList
-                                data={this.state.data}
-                                ListEmptyComponent={() => (
-                                    <Text style={{
-                                        fontFamily: "nunitoRegular",
-                                        fontSize: hp("3%"),
-                                        marginTop: hp("2%"),
-                                        alignSelf: "center"
-                                    }}>Not Found!!</Text>
-                                )}
-                                renderItem={({ item }) =>
-                                    (
-                                        <Card containerStyle={styles.card} >
-                                            <View style={{ flexDirection: "row" }}>
-                                                <Text style={styles.cardTextOne}>{this.state.data.indexOf(item) + 1}</Text>
-                                                <Text style={styles.cardTextTwo}>{item.name} Grade-{item.grade}</Text>
-                                                <Text style={styles.cardTextThree}>{item.totalScore}</Text>
-                                            </View>
-                                        </Card>
-                                    )
-                                }
-                                keyExtractor={(value) => value.uid}
-                            />
-                        </View>
-                        <StatusBar style="light" />
+                    <View style={styles.titleContainer}>
+                        <Image style={styles.image} source={require("../images/bg.png")} />
+                        <Text style={styles.title}>Leader Board</Text>
+                        <Text style={styles.titleTwo}>Your Position :- {this.state.position}</Text>
+                    </View>
+                    <View>
+                        <SearchBar
+                            placeholder="Search by Name"
+                            onChangeText={(searchText) => {
+                                this.setState({ searchText })
+                                this.searchFilter(searchText)
+                            }}
+                            value={this.state.searchText}
+                            containerStyle={{ backgroundColor: '#FFFFFF', marginTop: hp("2%"), borderBottomColor: "#FFFFFF", borderTopColor: "#FFFFFF" }}
+                            inputContainerStyle={{ backgroundColor: '#F3B63A' }}
+                            lightTheme={true}
+                            round={true}
+                            placeholderTextColor="#FFFFFF"
+                        />
+                    </View>
+                    <ScrollView style={{ marginTop: hp("2%") }}>
+                        <FlatList
+                            data={this.state.data}
+                            ListEmptyComponent={() => (
+                                <Text style={{
+                                    fontFamily: "nunitoRegular",
+                                    fontSize: hp("3%"),
+                                    marginTop: hp("2%"),
+                                    alignSelf: "center"
+                                }}>Not Found!!</Text>
+                            )}
+                            renderItem={({ item }) =>
+                                (
+                                    <Card containerStyle={styles.card} >
+                                        <View style={{ flexDirection: "row" }}>
+                                            <Text style={styles.cardTextOne}>{this.state.data.indexOf(item) + 1}</Text>
+                                            <Text style={styles.cardTextTwo}>{item.name} Grade-{item.grade}</Text>
+                                            <Text style={styles.cardTextThree}>{item.totalScore}</Text>
+                                        </View>
+                                    </Card>
+                                )
+                            }
+                            keyExtractor={(value) => value.uid}
+                        />
                     </ScrollView>
+                    <View style={{ height: hp("2%") }}></View>
+                    <StatusBar style="light" />
                 </SafeAreaView>
             )
         } else {
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
         borderRadius: hp("2.5%"),
         width: wp("100%"),
         height: hp("22%"),
-        resizeMode:"cover"
+        resizeMode: "cover"
     },
     card: {
         flexDirection: "row",

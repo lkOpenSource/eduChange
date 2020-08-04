@@ -33,7 +33,7 @@ export default class AboutScreen extends React.Component {
                 <SafeAreaView style={styles.container}>
                     <ScrollView>
                         <View style={styles.top}>
-                            <Image source={require("../images/top.png")} style={{resizeMode:"cover"}}/>
+                            <Image source={require("../images/top.png")} style={{ resizeMode: "cover" }} />
                         </View>
                         <View style={styles.company}>
                             <Text style={{ fontSize: hp("2.3%") }}>
@@ -47,12 +47,12 @@ export default class AboutScreen extends React.Component {
                             <Text style={styles.quoteText}>'Dreams Don't Work Unless You Do'</Text>
                         </View>
                         <View style={styles.content}>
-                            <Text style={{ fontSize: hp("2.5%"), fontFamily: "nunitoRegular", color: "#4C4B4B" }}>
+                            <Text style={{ fontSize: hp("2.8%"), fontFamily: "nunitoRegular", color: "#4C4B4B", textAlign: "center" }}>
                                 eduChange is introduced to ease the studying experience and making
                                 learning more fun.
                                 Students can learn any subject area using our App
                                 Moreover,Students can ensure their knowledge by participating in monthly quizes
-                                This app is developed by lk.OpenSource Company. 
+                                This app is developed by lk.OpenSource Company.
                                 Lead Developers - Sibishan and Sathurshan
         		        </Text>
                         </View>
@@ -90,6 +90,6 @@ const styles = StyleSheet.create({
         color: "#1287A5"
     },
     content: {
-     //   margin: hp("0.5%")
+        //   margin: hp("0.5%")
     }
 });

@@ -76,7 +76,7 @@ export default class SubjectLearnScreen extends React.Component {
                         <Image style={styles.image} source={{ uri: `${imageId}` }} />
 
                         <View style={styles.mainView}>
-                            <Text style={styles.mainText}>Lessons</Text>
+                            <Text style={styles.mainText}>Resources</Text>
                             <FlatList
                                 data={this.state.youtubeVideos}
                                 renderItem={({ item }) => {
@@ -88,7 +88,7 @@ export default class SubjectLearnScreen extends React.Component {
                                                 <TouchableOpacity onPress={() => {
                                                     this.props.navigation.navigate("PlayVideo", { url: `${item.content}` })
                                                 }}>
-                                                    <Icon type="FontAwesome" name="play-circle" style={styles.cardTextThree} />
+                                                    <Icon type="FontAwesome" name="youtube" style={[styles.cardTextThree,{color:"#FF3031"}]} />
                                                 </TouchableOpacity>
                                             </View>
                                         </Card>
@@ -107,7 +107,7 @@ export default class SubjectLearnScreen extends React.Component {
                                                 <TouchableOpacity onPress={() => {
                                                     this.props.navigation.navigate("WebViewForSubject", { url: `${item.content}` })
                                                 }}>
-                                                    <Icon type="FontAwesome" name="google" style={styles.cardTextThree} />
+                                                    <Icon type="FontAwesome" name="chrome" style={[styles.cardTextThree,{color:"#43BE31"}]} />
                                                 </TouchableOpacity>
                                             </View>
                                         </Card>
@@ -126,7 +126,7 @@ export default class SubjectLearnScreen extends React.Component {
                                                 <TouchableOpacity onPress={() => {
                                                     this.props.navigation.navigate("PdfView", { url: `${item.content}` })
                                                 }}>
-                                                    <Icon type="FontAwesome" name="file" style={styles.cardTextThree} />
+                                                    <Icon type="FontAwesome" name="file" style={[styles.cardTextThree,{color:"#487EB0"}]} />
                                                 </TouchableOpacity>
                                             </View>
                                         </Card>
@@ -230,10 +230,10 @@ const styles = StyleSheet.create({
         margin: hp("2%")
     },
     buttonImage: {
-        width: wp("32%"),
-        height: hp("17%"),
-        marginTop: hp("-7%"),
-        marginLeft: wp("5%"),
+        width: wp("27%"),
+        height: hp("14%"),
+        marginTop: hp("-5%"),
+        marginLeft: wp("6%"),
         resizeMode: "cover"
     }
 });

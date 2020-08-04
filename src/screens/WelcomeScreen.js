@@ -66,7 +66,7 @@ export default class WelcomeScreen extends React.Component {
                         <Form style={{ margin: hp("3%") }}>
                             <Item rounded inlineLabel style={styles.textBox}>
                                 <Label><Text style={styles.label}>  Email</Text></Label>
-                                <Input value={this.state.email} onChangeText={(email) => { this.setState({ email: email.trim() }) }} />
+                                <Input value={this.state.email} keyboardType="email-address" onChangeText={(email) => { this.setState({ email: email.trim() }) }} />
                             </Item>
                             <Item rounded inlineLabel style={styles.textBox}>
                                 <Label><Text style={styles.label}>  Password</Text></Label>
